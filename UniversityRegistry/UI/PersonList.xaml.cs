@@ -18,9 +18,24 @@ namespace UniversityRegistry.UI
     /// </summary>
     public partial class PersonList : UserControl
     {
+        /// <summary>
+        /// Event handler
+        /// </summary>
+        public event SelectionChangedEventHandler SelectionChanged;
+
         public PersonList()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// A proxy event listener that passes on selection changed events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectionChanged?.Invoke(this, e);
         }
     }
 }
